@@ -222,7 +222,9 @@ function loadQuestion(){
 function selectAnswer(answerText,btn){
   document.querySelectorAll(".option-btn").forEach(b=>b.classList.remove("selected"));
   btn.classList.add("selected");
-  userAnswers.push({question:questions[currentQ].q,answer:answerText,category:questions[currentQ].cat});
+  const optionIndex=questions[currentQ].opts.indexOf(answerText);
+  const optionLetter=String.fromCharCode(65+optionIndex);
+  userAnswers.push({question:questions[currentQ].q,answer:answerText,category:questions[currentQ].cat,option:optionLetter});
   setTimeout(()=>{currentQ++;currentQ<questions.length?loadQuestion():startAnalysis();},380);
 }
 
@@ -320,6 +322,7 @@ async function submitToGoogleSheet(resultData,answers,name){
   statusEl.className="sheet-status saving";
   statusText.textContent="Saving to records...";
   try{
+    const answersLettersOnly=answers.map(a=>({letter:a.option||""}));
     const payload={
       name:name,
       characterType:resultData.characterType,
@@ -330,7 +333,7 @@ async function submitToGoogleSheet(resultData,answers,name){
       strengths:resultData.strengths||[],
       watchOuts:resultData.watchOuts||[],
       color:resultData.color||"",
-      answers:answers
+      answers:answersLettersOnly
     };
     await fetch(GOOGLE_SHEET_URL,{method:"POST",mode:"no-cors",headers:{"Content-Type":"application/json"},body:JSON.stringify(payload)});
     statusEl.className="sheet-status saved";
