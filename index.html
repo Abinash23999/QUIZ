@@ -77,12 +77,12 @@
   .ai-analysis-text p:last-child{margin-bottom:0;}
   .result-traits{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:32px;animation:fadeUp .5s .3s ease both;}
   .trait-pill{border:1px solid var(--border);padding:6px 18px;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--text);background:var(--card);}
-  .result-scores{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;max-width:480px;width:100%;margin-bottom:32px;animation:fadeUp .5s .35s ease both;}
-  .score-item{background:var(--card);border:1px solid var(--border);padding:16px 20px;text-align:left;}
-  .score-label{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;}
-  .score-bar{height:3px;background:var(--border);margin-bottom:6px;}
-  .score-bar-fill{height:100%;background:linear-gradient(90deg,var(--accent),var(--accent3));transition:width 1s .8s cubic-bezier(.4,0,.2,1);}
-  .score-val{font-family:"Bebas Neue",sans-serif;font-size:22px;color:var(--text);letter-spacing:.05em;}
+  .result-scores{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;max-width:600px;width:100%;margin:40px auto;animation:fadeUp .5s .35s ease both;}
+  .score-item{background:var(--card);border:2px solid var(--border);padding:24px;text-align:center;border-radius:8px;}
+  .score-label{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent3);margin-bottom:16px;font-weight:bold;}
+  .score-bar{height:6px;background:var(--border);margin-bottom:12px;border-radius:3px;}
+  .score-bar-fill{height:100%;background:linear-gradient(90deg,var(--accent),var(--accent3));transition:width 1s .8s cubic-bezier(.4,0,.2,1);border-radius:3px;}
+  .score-val{font-family:"Bebas Neue",sans-serif;font-size:32px;color:var(--accent);letter-spacing:.05em;font-weight:bold;}
   .duality-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;max-width:480px;width:100%;margin-bottom:40px;animation:fadeUp .5s .38s ease both;}
   @media(max-width:500px){.duality-grid{grid-template-columns:1fr;}}
   .duality-card{background:var(--card);border:1px solid var(--border);padding:20px;text-align:left;}
@@ -167,7 +167,7 @@
 // =============================================
 // ⚙️  GOOGLE SHEET APP SCRIPT URL
 // =============================================
-const GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbwVkxUPdoBOhwiRR6wvVbPm3dgQIhWLGqESViL5CUCWedi6V-kckffVdppdQgMMx-1h/exec";
+const GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbwRCej9L8P_cBQPb1Sr2ZdLVGEo3Hel_tIfhdDgrg220wK2cOm8eozGgTBdEEnSjwq4/exec";
 // =============================================
 
 const cursor=document.getElementById("cursor"),ring=document.getElementById("cursorRing");
