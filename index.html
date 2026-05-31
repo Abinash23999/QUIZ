@@ -194,7 +194,7 @@ const questions=[
   {cat:"FINAL",q:"Deep down, what do you most want people to say about you?",opts:["They were fearless and never backed down from anything","They were kind — people always felt safe with them","They were brilliant — always one step ahead","They were real. What you saw was what you got."]}
 ];
 
-let userName="",currentQ=0,userAnswers=[];
+let userName="",currentQ=0,userAnswers=[],isSubmitting=false;
 
 function show(id){document.querySelectorAll(".screen").forEach(s=>s.classList.remove("active"));document.getElementById(id).classList.add("active");window.scrollTo(0,0);}
 function updateProgress(){document.getElementById("progressBar").style.width=((currentQ/questions.length)*100)+"%";}
@@ -315,7 +315,10 @@ function localFallback(answers){
 }
 
 async function submitToGoogleSheet(resultData,answers,name){
+  if(isSubmitting)return;
   if(!GOOGLE_SHEET_URL||GOOGLE_SHEET_URL==="YOUR_APPS_SCRIPT_WEB_APP_URL_HERE")return;
+  
+  isSubmitting=true;
   const statusEl=document.getElementById("sheetStatus");
   const statusText=document.getElementById("sheetStatusText");
   statusEl.style.display="inline-flex";
@@ -342,6 +345,8 @@ async function submitToGoogleSheet(resultData,answers,name){
     statusEl.className="sheet-status failed";
     statusText.textContent="Could not save — check your Sheet URL";
     console.warn("Sheet error:",err);
+  }finally{
+    isSubmitting=false;
   }
 }
 
